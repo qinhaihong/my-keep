@@ -9,11 +9,11 @@ import org.apache.log4j.Logger;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.jd.payment.risk.audi.client.AudiFacade;
+/*import com.jd.payment.risk.audi.client.AudiFacade;
 import com.jd.payment.risk.audi.model.QuotaMonthFact;
 import com.jd.payment.risk.audi.model.QuotaYearFact;
 import com.jd.payment.risk.audi.model.RuleDataTransEntity;
-import com.jd.payment.risk.common.util.FastjsonUtil;
+import com.jd.payment.risk.common.util.FastjsonUtil;*/
 
 /**
  * <br/>Title: JdkThreadBlockPoolPressureAudiTest
@@ -28,11 +28,11 @@ import com.jd.payment.risk.common.util.FastjsonUtil;
 public class JdkThreadBlockPoolPressureAudiTest extends JdkThreadBlockPoolTestBase {
 	private static Logger lgr = Logger.getLogger("JdkThreadBlockPoolPressureAudiTest");
 	
-	private static AudiFacade audiFacade;
+	/*private static AudiFacade audiFacade;
 	static {
 		ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:/spring/spring-audi-client.xml");
 		audiFacade = (AudiFacade) ac.getBean("audiFacade");
-	}
+	}*/
 	
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		final ExecutorService exec = newFixedThreadBlockPool_TPE(100, 150);
@@ -44,7 +44,7 @@ public class JdkThreadBlockPoolPressureAudiTest extends JdkThreadBlockPoolTestBa
 	protected String executeApplication() throws Exception {
 		temp.incrementAndGet();
 		String jsonsr = "{user:'express',pass:'express',bankCardNo:'d89de280f9c2013636a2fdc32f514f2c',tradeAmount:'400',businessType:'87',extRequestSN:'2013062700001',extTradeDN:'1234567890',cardType:'111',merchantNo:'22310462',cardExpireDate:'1306',currencyType:'CNY',tranStartTime:'1380515727283',tranEndTime:'0'}";
-		Map<String,String> mapParams = FastjsonUtil.jsonToMap(jsonsr);
+		/*Map<String,String> mapParams = FastjsonUtil.jsonToMap(jsonsr);
 		RuleDataTransEntity rv = audiFacade.queryOfflineData(mapParams);
 		List<Object> lst = rv.getFacts();
 		if (lst!=null) {
@@ -58,7 +58,7 @@ public class JdkThreadBlockPoolPressureAudiTest extends JdkThreadBlockPoolTestBa
 					lgr.info("CLIENT - ".concat(rv.isSuccess()+"|"+rv.getErrorMsg()+"|"+fact.getQuotaYear()));
 				}
 			}
-		}
+		}*/
 		return "* pass no： " + temp;
 	}
 

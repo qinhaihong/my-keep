@@ -13,11 +13,11 @@ import java.util.List;
  * <br/>date 2013年10月18日 上午10:55:58
  * <br/>version 1.0.0
  */
-public class Generics<T extends List<?>> {
+public class Generics<T extends Collection<?>> {
 		
 	public static void main(String[] args) {
 		@SuppressWarnings({ "rawtypes", "unused" })
-		Generics<? extends Collection> generics = new Generics<List>();
+		Generics<List<?>> generics = new Generics<List<?>>();
 	}
 
 }

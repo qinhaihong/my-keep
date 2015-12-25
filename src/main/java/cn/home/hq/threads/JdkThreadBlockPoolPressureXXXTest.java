@@ -14,11 +14,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.home.hq.calendar.DateTool;
 
+/*
 import com.jd.payment.risk.audi.client.AudiFacade;
 import com.jd.payment.risk.audi.model.QuotaMonthFact;
 import com.jd.payment.risk.audi.model.QuotaYearFact;
 import com.jd.payment.risk.audi.model.RuleDataTransEntity;
 import com.jd.payment.risk.common.util.FastjsonUtil;
+*/
 
 /**
  * <br/>Title: JdkThreadBlockPoolPressureXXXTest
@@ -33,11 +35,11 @@ import com.jd.payment.risk.common.util.FastjsonUtil;
 public class JdkThreadBlockPoolPressureXXXTest extends JdkThreadBlockPoolTestBase {
 	private static Logger lgr = Logger.getLogger("JdkThreadBlockPoolPressureXXXTest");
 	
-	private static AudiFacade audiFacade;
+	/*private static AudiFacade audiFacade;
 	static {
 		ApplicationContext ac=new ClassPathXmlApplicationContext("classpath:/spring/spring-audi-client.xml");
 		audiFacade = (AudiFacade) ac.getBean("audiFacade");
-	}
+	}*/
 	
 	public static void main(String[] args) throws ExecutionException, InterruptedException {
 		final ExecutorService exec = newFixedThreadBlockPool_TPE(100, 150);
@@ -47,11 +49,11 @@ public class JdkThreadBlockPoolPressureXXXTest extends JdkThreadBlockPoolTestBas
 			final int temp = i ;
 			Future<String> f = exec.submit(new Callable<String>() {
 				 public String call() throws Exception { 
-					try {
+					/*try {
 						executeApp();
 					} catch (InterruptedException e) {
 						e.printStackTrace();
-					}
+					}*/
 					return "* pass no： " + temp ;
 				}
 			});
@@ -69,7 +71,7 @@ public class JdkThreadBlockPoolPressureXXXTest extends JdkThreadBlockPoolTestBas
 		}
 	}
 	
-	static void executeApp() throws Exception {
+	/*static void executeApp() throws Exception {
 		String jsonsr = "{user:'express',pass:'express',bankCardNo:'d89de280f9c2013636a2fdc32f514f2c',tradeAmount:'400',businessType:'87',extRequestSN:'2013062700001',extTradeDN:'1234567890',cardType:'111',merchantNo:'22310462',cardExpireDate:'1306',currencyType:'CNY',tranStartTime:'1380515727283',tranEndTime:'0'}";
 		Map<String,String> mapParams = FastjsonUtil.jsonToMap(jsonsr);
 		RuleDataTransEntity rv = audiFacade.queryOfflineData(mapParams);
@@ -86,7 +88,7 @@ public class JdkThreadBlockPoolPressureXXXTest extends JdkThreadBlockPoolTestBas
 				}
 			}
 		}
-	}
+	}*/
 
 	@Override
 	protected String executeApplication() throws Exception {

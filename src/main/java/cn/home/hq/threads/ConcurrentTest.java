@@ -13,83 +13,83 @@ import java.util.concurrent.Semaphore;
 
 /**
  * <br/>Title: ConcurrentTest
- * <br/>Description:javaæ¨¡æ‹Ÿå¹¶å‘æ“ä½œè¿›è¡Œå‹åŠ›æµ‹è¯•
+ * <br/>Description:javaÄ£Äâ²¢·¢²Ù×÷½øĞĞÑ¹Á¦²âÊÔ
  * <br/>Company: ChinaBank
  * <br/>ClassName: ConcurrentTest
  * <br/>ProjectName: opencode-common
  * <br/>author qinhaihong
- * <br/>date 2013å¹´10æœˆ11æ—¥ ä¸‹åˆ3:54:48
+ * <br/>date 2013Äê10ÔÂ11ÈÕ ÏÂÎç3:54:48
  * <br/>version 1.0.0
  */
 public class ConcurrentTest {
-	private static int thread_num = 200;
-	private static int client_num = 460;
-	private static Map<String,String> keywordMap = new HashMap<String,String>();
-	
-	private static final ExecutorService exec = Executors.newCachedThreadPool() ;
+    private static int thread_num = 200;
+    private static int client_num = 460;
+    private static Map<String,String> keywordMap = new HashMap<String,String>();
 
-	public static void main(String[] args) {
-		// 50ä¸ªçº¿ç¨‹å¯ä»¥åŒæ—¶è®¿é—®
-		final Semaphore semp = new Semaphore(thread_num);
-		
-		// æ¨¡æ‹Ÿ2000ä¸ªå®¢æˆ·ç«¯è®¿é—®
-		for (int index=0; index<client_num; index++) {
-			final int NO = index;
-			Runnable run = new Runnable() {
-				public void run() {
-					try {
-						semp.acquire(); //è·å–è®¸å¯
-						
-						System.out.println("Thread:" + NO);
-						String host = "http://10.99.23.42:7001/KMQueryCenter/query.do?";
-						String para = "method=getQueryResult&pageNum=1&pageSize=5&"
-						+ "queryKeyWord="
-						+ getRandomSearchKey(NO)
-						+ "&questionID=-1&questionIdPath=-1&searchType=1"
-						+ "&proLine=&proSeries=&proType=" + NO;
-						System.out.println(host + para);
-						
-						URL url = new URL(host);// æ­¤å¤„å¡«å†™ä¾›æµ‹è¯•çš„url
-						HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+    private static final ExecutorService exec = Executors.newCachedThreadPool() ;
+
+    public static void main(String[] args) {
+        // 50¸öÏß³Ì¿ÉÒÔÍ¬Ê±·ÃÎÊ
+        final Semaphore semp = new Semaphore(thread_num);
+
+        // Ä£Äâ2000¸ö¿Í»§¶Ë·ÃÎÊ
+        for (int index=0; index<client_num; index++) {
+            final int NO = index;
+            Runnable run = new Runnable() {
+                public void run() {
+                    try {
+                        semp.acquire(); //»ñÈ¡Ğí¿É
+
+                        System.out.println("Thread:" + NO);
+                        String host = "http://10.99.23.42:7001/KMQueryCenter/query.do?";
+                        String para = "method=getQueryResult&pageNum=1&pageSize=5&"
+                                + "queryKeyWord="
+                                + getRandomSearchKey(NO)
+                                + "&questionID=-1&questionIdPath=-1&searchType=1"
+                                + "&proLine=&proSeries=&proType=" + NO;
+                        System.out.println(host + para);
+
+                        URL url = new URL(host);// ´Ë´¦ÌîĞ´¹©²âÊÔµÄurl
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 //						connection.setRequestMethod("POST");
 //						connection.setRequestProperty("Proxy-Connection", "Keep-Alive");
-						connection.setDoOutput(true);
-						connection.setDoInput(true);
-						
-						PrintWriter out = new PrintWriter(connection.getOutputStream());
-						out.print(para);
-						out.flush();
-						out.close();
-						
-						BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-						String line = "";
-						String result = "";
-						while ((line = in.readLine()) != null) {
-							result += line;
-						}
-						System.out.println(result);
-						System.out.println("ç¬¬ï¼š" + NO + " ä¸ª");
-						
-						Thread.sleep((long) (Math.random()) * 10);
-						semp.release(); //é‡Šæ”¾
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			};
-			exec.execute(run);
-		}
-		
-		// é€€å‡ºçº¿ç¨‹æ± 
-		exec.shutdown();
-	}
-	
-	private static String getRandomSearchKey(final int no) {
-		String ret = "";
-		ret = (keywordMap.entrySet().toArray())[no].toString();
-		ret = ret.substring(0, ret.lastIndexOf("="));
-		System.out.println("\t" + ret);
-		return ret;
-	}
+                        connection.setDoOutput(true);
+                        connection.setDoInput(true);
+
+                        PrintWriter out = new PrintWriter(connection.getOutputStream());
+                        out.print(para);
+                        out.flush();
+                        out.close();
+
+                        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        String line = "";
+                        String result = "";
+                        while ((line = in.readLine()) != null) {
+                            result += line;
+                        }
+                        System.out.println(result);
+                        System.out.println("µÚ£º" + NO + " ¸ö");
+
+                        Thread.sleep((long) (Math.random()) * 10);
+                        semp.release(); //ÊÍ·Å
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            };
+            exec.execute(run);
+        }
+
+        // ÍË³öÏß³Ì³Ø
+        exec.shutdown();
+    }
+
+    private static String getRandomSearchKey(final int no) {
+        String ret = "";
+        ret = (keywordMap.entrySet().toArray())[no].toString();
+        ret = ret.substring(0, ret.lastIndexOf("="));
+        System.out.println("\t" + ret);
+        return ret;
+    }
 
 }

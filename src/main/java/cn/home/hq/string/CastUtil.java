@@ -1,4 +1,4 @@
-package cn.home.hq.stri;
+package cn.home.hq.string;
 
 /**
  * <p>Title: CastUtil</p>

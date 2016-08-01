@@ -1,39 +1,50 @@
 package cn.home.hq.json;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.alibaba.fastjson.JSON;
-
-/**
- * <br/>Title: FastjsonUtil
- * <br/>Description:JSON格式转换
- * <br/>Company: ChinaBank
- * <br/>ClassName: FastjsonUtil
- * <br/>ProjectName: opencode-common
- * <br/>author qinhaihong
- * <br/>date 2013年9月29日 下午4:52:58
- * <br/>version 1.0.0
- */
 public class FastjsonUtil {
 	
-	protected Logger logger = LoggerFactory.getLogger(FastjsonUtil.class);
-	
-	public static String objectToJson(Object result) {
-		return JSON.toJSONString(result);
-	}
-	
-	public static Object jsonToObject(String jsonsr, Class<Object> clazz) {
-		return JSON.parseObject(jsonsr, clazz);
-	}
-	
-	@SuppressWarnings("unchecked")
-	public static Map<String, String> jsonToMap(String jsonsr) {
-		Map<String, String> map = null;
-		map = (Map<String, String>) JSON.parse(jsonsr) ;
+	public static Map<String, String> jsonToMap(String jsonSr) {
+		Map<String, String> map = (Map<String, String>) JSON.parse(jsonSr) ;
 		return map;
+	}
+
+	public static String mapTojson(Map<String, String> map) {
+		String jsonSr = JSON.toJSONString(map);
+		return jsonSr;
+	}
+
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		JSONObject json = new JSONObject();
+		String depCityName = "beijing";
+		String arrCityName = "xianggang";
+		json.put("airlineCode", "ca");
+		json.put("airLineName", "guohang");
+		json.put("airlinePhone", "13001230123");
+
+		Map<String,String> mapDep = new HashMap<>();
+		mapDep.put("city_code", "bjs");
+		mapDep.put("city_Name", depCityName);
+
+		Map<String,String> mapArr = new HashMap<>();
+		mapArr.put("city_code", "hkg");
+		mapArr.put("city_Name", arrCityName);
+
+		json.put("depCity", mapDep);
+		json.put("arrCity", mapArr);
+
+		json.put("orderId", "28900877");
+		json.put("canCancelCheckIn", true);
+		json.put("originDate", "2016-07-07");
+		json.put("isLeave", true);
+
+		System.out.println("page://flight_modify_calendar?params=" + URLEncoder.encode(json.toJSONString(), "utf-8"));
 	}
 
 }

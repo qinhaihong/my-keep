@@ -1,4 +1,4 @@
-package cn.home.hq.stri;
+package cn.home.hq.string;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,6 +19,10 @@ public class SplitUtil {
         for (String str : arr) {
             System.out.println(str);
         }
+
+        String mapKey = "订座成功，PNR号：operation-pnr";
+        String replaced = mapKey.replaceAll("operation-pnr", "RTY501");
+        System.out.println(replaced);
     }
 
     static public String[] getLineParts1(String line){

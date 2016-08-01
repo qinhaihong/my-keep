@@ -1,18 +1,13 @@
 package cn.home.hq.threads;
 
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import cn.home.hq.calendar.DateTool;
+import org.apache.log4j.Logger;
 
 /*
 import com.jd.payment.risk.audi.client.AudiFacade;

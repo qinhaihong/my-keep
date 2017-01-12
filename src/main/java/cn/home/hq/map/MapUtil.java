@@ -9,9 +9,10 @@ import java.util.Map;
 public class MapUtil {
 
     public static void main( String[] args ) {
-        Map<Integer, String> map1 = new HashMap<>();
+        Map<Object, Object> map1 = new HashMap<>();
         map1.put(1, "10");
-        map1.put(2, "20");
+        map1.put("2", "20");
+        System.out.println(map1);
         System.out.println(map1.get(1));
     }
 

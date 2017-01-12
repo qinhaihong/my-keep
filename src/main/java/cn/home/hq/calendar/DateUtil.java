@@ -12,8 +12,26 @@ public final class DateUtil {
 	 * @throws ParseException
 	 */
 	public static void main(String[] args) throws ParseException {
-		// TODO Auto-generated method stub
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		/**
+		 * format
+		 */
+		String writeDateS = "2015-08-18 13:58:04";
+		Date writeDate = null;
+		if (writeDateS.length()>=18) {
+			SimpleDateFormat abc =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss".replace(" ",""));
+			writeDate = abc.parse(writeDateS);
+		} else if (writeDateS.length()>=10) {
+			SimpleDateFormat abc =new SimpleDateFormat("yyyy-MM-dd");
+			writeDate = abc.parse(writeDateS);
+		}
+		if (writeDate != null) {
+			System.out.println(writeDate + "www" + writeDateS);
+		}
+
+		/**
+		 * between
+		 */
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		Date d1=sdf.parse("2012-09-08 10:10:10");
 		Date d2=sdf.parse("2012-09-09 00:00:00");
 		System.out.println(daysBetween(d1,d2));

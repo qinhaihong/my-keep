@@ -2,10 +2,12 @@ package cn.home.hq.json;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FastjsonUtil {
@@ -20,7 +22,15 @@ public class FastjsonUtil {
 		return jsonSr;
 	}
 
-	public static void main(String[] args) throws UnsupportedEncodingException {
+	private static void fromObjectList() {
+		List<Object> list = Lists.newArrayList();
+		list.add("YoA8s1UiCjkM");
+		list.add("uidfeD98Fd");
+		String jsonString = JSONObject.toJSONString(list);
+		System.out.println(jsonString);
+	}
+
+	private static void fromObjectJson() throws UnsupportedEncodingException {
 		JSONObject json = new JSONObject();
 		String depCityName = "beijing";
 		String arrCityName = "xianggang";
@@ -45,6 +55,11 @@ public class FastjsonUtil {
 		json.put("isLeave", true);
 
 		System.out.println("page://flight_modify_calendar?params=" + URLEncoder.encode(json.toJSONString(), "utf-8"));
+	}
+
+	public static void main(String[] args) throws UnsupportedEncodingException {
+		fromObjectList();
+		fromObjectJson();
 	}
 
 }

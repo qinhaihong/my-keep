@@ -8,23 +8,30 @@ import java.net.URL;
  */
 public class FilePathUtil {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         URL url = FilePathUtil.class.getResource("/");
-        String rootPath1 = url.toString();
-        System.out.println(rootPath1);
-        String rootPath2 = url.getPath();
-        System.out.println(rootPath2);
-        String rootPath3 = url.getFile().toString();
-        System.out.println(rootPath3);
+
+        String cPath1 = url.toString();
+        System.out.println("url.tos" + cPath1);
+
+        String cPath2 = url.getPath();
+        System.out.println("url.path" + cPath2);
+
+        String cPath3 = url.getFile();
+        System.out.println("url.file" + cPath3);
 
         String relativelyPath = System.getProperty("user.dir");
-        System.out.println(relativelyPath);
+        System.out.println("user.dir" + relativelyPath);
 
         File file = new File(relativelyPath + "/README.md");
+        System.out.println("README.md path: " + file.getPath());
+        System.out.println("README.md name: " + file.getName());
+        System.out.println("README.md name2: " + file.getName().substring(file.getName().lastIndexOf(File.separator) + 1));
+
         if (file.exists()) {
-            System.out.println("README.md 存在.");
+            System.out.println("README.md exist.");
         } else {
-            System.out.println("README.md 不存在！");
+            System.out.println("README.md no exist ！");
         }
     }
 

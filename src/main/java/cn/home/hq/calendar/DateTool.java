@@ -10,7 +10,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class DateTool {
-	private static SimpleDateFormat reqDf = new SimpleDateFormat("yyyyMMddHHmmss");
+	private static SimpleDateFormat reqDf = new SimpleDateFormat("yyyyMMddHHmmssSSS");
 	
     /**
      * <p>Description: Date to String</p>

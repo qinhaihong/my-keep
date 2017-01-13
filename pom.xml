@@ -19,18 +19,18 @@
   </properties>
   
   <dependencies>
-  	<!-- 测试应用 -->
+  	<!-- common start -->
 	  <dependency>
 		  <groupId>com.taobao.util</groupId>
 		  <artifactId>util</artifactId>
 		  <version>1.2.6</version>
 	  </dependency>
-    <!--<dependency>
-	    <groupId>com.jd.payment.risk</groupId>
-		<artifactId>audi-client</artifactId>
-		<version>2.6-SNAPSHOT</version>
-	</dependency>-->
-	<!-- 测试应用 结束 -->
+	  <dependency>
+		  <groupId>org.jodd</groupId>
+		  <artifactId>jodd</artifactId>
+		  <version>3.3.8</version>
+	  </dependency>
+	  <!-- common end -->
 	
 	<!-- test dependency -->
 	<dependency>

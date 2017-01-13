@@ -25,6 +25,8 @@ public class FilePathUtil {
 
         File file = new File(relativelyPath + "/README.md");
         System.out.println("README.md path: " + file.getPath());
+        System.out.println("README.md path: " + file.getCanonicalPath());
+        System.out.println("README.md path: " + file.getAbsolutePath());
         System.out.println("README.md name: " + file.getName());
         System.out.println("README.md name2: " + file.getName().substring(file.getName().lastIndexOf(File.separator) + 1));
 

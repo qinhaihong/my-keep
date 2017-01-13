@@ -13,15 +13,13 @@ public class ZipUtil {
         String relativelyPath = System.getProperty("user.dir");
         System.out.println("user.dir: " + relativelyPath);
 
-        String sourcePath = relativelyPath + new String("/17_长滩岛_Boracay".getBytes("GBK"), "UTF-8") + File.separator;
+        String sourcePath = relativelyPath + new String("/29_澳门_Macau".getBytes("GBK"), "UTF-8") + File.separator;
         System.out.println("sourcePath: " + sourcePath);
 
         zip(sourcePath);
     }
 
     private static void zip(String zipSourcePath) {
-        FileOutputStream fos = null;
-        BufferedOutputStream bos = null;
         ZipOutputStream zos = null;
         try {
             File zipSource = new File(zipSourcePath);
@@ -33,19 +31,17 @@ public class ZipUtil {
                     zipTarget.delete(); // 删除旧的zip文件
                 }
 
-                fos = new FileOutputStream(zipTarget);
-                bos = new BufferedOutputStream(fos);
-                zos = new ZipOutputStream(bos);
+                zos = new ZipOutputStream(new FileOutputStream(zipTarget));
                 addEntry(File.separator, zipSource, zos); // 添加对应的文件Entry
-                zos.flush();
 
+                zos.flush();
             } else {
                 System.out.println("zip source no exists. zipSourcePath: {}" + zipSourcePath);
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            closeQuietly(zos, bos, fos);
+            closeQuietly(zos);
         }
     }
 

@@ -14,16 +14,23 @@ public class SplitUtil {
      * <p>Description: main</p>
      * @param args
      * @author haihong.qhh
-     * @date 2015-12-25 ä¸‹åˆ19:02:39
+     * @date 2015-12-25 ÏÂÎç19:02:39
      */
     public static void main(String[] args) throws UnsupportedEncodingException {
-        splitF();
+        splitM();
     }
 
     static public void replaceAll(){
-        String mapKey = "è®¢åº§æˆåŠŸï¼ŒPNRå·ï¼šoperation-pnr";
+        String mapKey = "¶©×ù³É¹¦£¬PNRºÅ£ºoperation-pnr";
         String replaced = mapKey.replaceAll("operation-pnr", "RTY501");
         System.out.println(replaced);
+    }
+
+    static public void splitM(){
+        String path = "¹ØÓÚ°ÄÃÅ£ü°ÄÃÅËÙĞ´ Ó°ÊÓÓëÊé¼®";
+        String [] arrays = path.split("£ü| ");;
+        String item = arrays[arrays.length-1];
+        System.out.println(item);
     }
 
     static public void splitF(){
@@ -34,24 +41,22 @@ public class SplitUtil {
     }
 
     static public void splitW() throws UnsupportedEncodingException {
-        String path = "é¼“æµªå±¿ï½œå¦é—¨";
-        path = new String(path.getBytes("GBK"), "UTF-8");
-        String [] arrays = path.split("ï½œ");
+        String text = "¹ÄÀËÓì£üÏÃÃÅ";
+        String [] arrays = text.split("£ü");
         String item = arrays[arrays.length-1];
         System.out.println(item);
     }
 
     static public void splitL() throws UnsupportedEncodingException {
-        String path = "123dï½œdfg";
-        path = new String(path.getBytes("GBK"), "UTF-8");
-        path = path.replaceAll("\\W", "|");
-        String [] arrays = path.split("\\|");
+        String text = "123d£üdfg";
+        text = text.replaceAll("\\W", "|");
+        String [] arrays = text.split("\\|");
         String item = arrays[arrays.length-1];
         System.out.println(item);
     }
 
     static public void getLineParts1(){
-        String line = "2015-12-25 11:58:52,098| INFO| com.taobao.tracker.log.TrackerLogger.info(TrackerLogger.java:100)| appName==ie^RobjId==1134769361^RobjType==1^RindexColumn==ORDER1134769361^Rhost==ieorder010179031190.s.et2^RopDetail==null^Roperator==4445^RopType==order^RoperatorRole==2^RopTime==2015-12-2511:58:52,098^RoperationDescription==å‡ºç¥¨æˆåŠŸ^RstatusDescription==å·²å‡ºç¥¨^RoperatorDescription==å–å®¶:æ¯”é‚»æ—…æ¸¸ç¥¨åŠ¡-å•„æœ¨é¸Ÿ^R| ^R";
+        String line = "2015-12-25 11:58:52,098| INFO| com.taobao.tracker.log.TrackerLogger.info(TrackerLogger.java:100)| appName==ie^RobjId==1134769361^RobjType==1^RindexColumn==ORDER1134769361^Rhost==ieorder010179031190.s.et2^RopDetail==null^Roperator==4445^RopType==order^RoperatorRole==2^RopTime==2015-12-2511:58:52,098^RoperationDescription==³öÆ±³É¹¦^RstatusDescription==ÒÑ³öÆ±^RoperatorDescription==Âô¼Ò:±ÈÁÚÂÃÓÎÆ±Îñ-×ÄÄ¾Äñ^R| ^R";
         String[] arr = StringUtils.split(line, '|');
         for (String str : arr) {
             System.out.println(str);
@@ -59,7 +64,7 @@ public class SplitUtil {
     }
 
     static public void getLineParts2(){
-        String line = "2015-12-25 11:58:52,098| INFO| com.taobao.tracker.log.TrackerLogger.info(TrackerLogger.java:100)| appName==ie^RobjId==1134769361^RobjType==1^RindexColumn==ORDER1134769361^Rhost==ieorder010179031190.s.et2^RopDetail==null^Roperator==4445^RopType==order^RoperatorRole==2^RopTime==2015-12-2511:58:52,098^RoperationDescription==å‡ºç¥¨æˆåŠŸ^RstatusDescription==å·²å‡ºç¥¨^RoperatorDescription==å–å®¶:æ¯”é‚»æ—…æ¸¸ç¥¨åŠ¡-å•„æœ¨é¸Ÿ^R| ^R";
+        String line = "2015-12-25 11:58:52,098| INFO| com.taobao.tracker.log.TrackerLogger.info(TrackerLogger.java:100)| appName==ie^RobjId==1134769361^RobjType==1^RindexColumn==ORDER1134769361^Rhost==ieorder010179031190.s.et2^RopDetail==null^Roperator==4445^RopType==order^RoperatorRole==2^RopTime==2015-12-2511:58:52,098^RoperationDescription==³öÆ±³É¹¦^RstatusDescription==ÒÑ³öÆ±^RoperatorDescription==Âô¼Ò:±ÈÁÚÂÃÓÎÆ±Îñ-×ÄÄ¾Äñ^R| ^R";
         String[] arr = StringUtils.split(line, "\\|");
         for (String str : arr) {
             System.out.println(str);

@@ -30,6 +30,7 @@ public class ListMemory {
         long freeMemoryEmpty=Runtime.getRuntime().freeMemory();
         System.out.println("freeMemory(B) : "+freeMemoryEmpty+" freeMemoryEmpty use(B) : "+(freeMemory-freeMemoryEmpty));
         System.out.println("totalMemory(B) : "+Runtime.getRuntime().totalMemory());
+        System.out.println("************************");
 
         for(int i=0;i<100000;i++){
             List list=new ArrayList();
@@ -37,7 +38,6 @@ public class ListMemory {
         long freeMemoryNew=Runtime.getRuntime().freeMemory();
         System.out.println("freeMemory(B) : "+freeMemoryNew+" freeMemoryNew use(B) : "+(freeMemory-freeMemoryNew));
         System.out.println("totalMemory(B) : "+Runtime.getRuntime().totalMemory());
-        System.out.println("************************");
     }
 
 }
